@@ -7,9 +7,9 @@
 
                 <!-- Logo Normal -->
                 <span class="logo-light">
-                    <span class="logo-lg"><img src="{{ asset('backend/assets/img/logo.svg') }}" alt="logo"></span>
-                    <span class="logo-sm"><img src="{{ asset('backend/assets/img/logo-small.svg') }}"
-                            alt="small logo"></span>
+                    <span class="logo-lg"><img src="{{ asset('data/logo.png') }}" alt="logo"  style="width:100px;"></span>
+                    <span class="logo-sm"><img src="{{ asset('data/logo.png') }}"
+                            alt="small logo"  style="width:50px;"></span>
                 </span>
 
                 <!-- Logo Dark -->
@@ -127,25 +127,7 @@
                         <span class="align-middle">Change Password</span>
                     </a>
 
-                    <!-- item -->
-                    <div
-                        class="form-check form-switch form-check-reverse d-flex align-items-center justify-content-between dropdown-item mb-0">
-                        <label class="form-check-label" for="notify"><i class="ti ti-bell"></i>Notifications</label>
-                        <input class="form-check-input me-0" type="checkbox" role="switch" id="notify">
-                    </div>
-
-                    <!-- Item-->
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <i class="ti ti-help-circle me-1 align-middle"></i>
-                        <span class="align-middle">Help & Support</span>
-                    </a>
-
-                    <!-- Item-->
-                    <a href="profile-settings.html" class="dropdown-item">
-                        <i class="ti ti-settings me-1 align-middle"></i>
-                        <span class="align-middle">Settings</span>
-                    </a>
-
+                    
                     <!-- Item-->
                     <div class="pt-2 mt-2 border-top">
                         <a href="{{ route('admin-logout') }}" class="dropdown-item text-danger">

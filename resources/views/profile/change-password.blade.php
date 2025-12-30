@@ -45,21 +45,23 @@
                     <h5 class="card-title">Personal Information</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin-user.update', $user->id) }}" method="POST" id="submit-form"
+                    <form action="{{ route('change-password.update') }}" method="POST" id="submit-form"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        
+
                         <div class="mb-3">
                             <label for="form-password1" class="form-label fs-14">Current Password</label>
                             <div class="input-group">
                                 <div class="input-group-text"><i class="ti ti-lock"></i></div>
-                                <input type="password" class="form-control" name="current_password">
-                                @error('current_password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                                <input type="password"
+                                    class="form-control @error('current_password', 'updatePassword') is-invalid @enderror"
+                                    name="current_password">
+                                @error('current_password', 'updatePassword')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
@@ -67,12 +69,13 @@
                             <label for="form-password1" class="form-label fs-14">New Password</label>
                             <div class="input-group">
                                 <div class="input-group-text"><i class="ti ti-lock"></i></div>
-                                <input type="password" class="form-control" name="new_password">
-                                @error('new_password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                                <input type="password" id="new_password" name="new_password"
+                                    class="form-control @error('new_password', 'updatePassword') is-invalid @enderror">
+                                @error('new_password', 'updatePassword')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
@@ -80,12 +83,8 @@
                             <label for="form-password1" class="form-label fs-14">Confirm Password</label>
                             <div class="input-group">
                                 <div class="input-group-text"><i class="ti ti-lock"></i></div>
-                                <input type="password" class="form-control" name="confirm_password">
-                                @error('confirm_password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                                <input type="password" id="new_password_confirmation" name="new_password_confirmation"
+                                    class="form-control">
                             </div>
                         </div>
 
@@ -100,24 +99,11 @@
 
     </div>
     @push('scripts')
-        {!! JsValidator::formRequest('App\Http\Requests\AdminUser\AdminUserUpdateRequest', '#submit-form') !!}
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#admin_user_image').on('change', function() {
-                    if (this.files && this.files[0]) {
-                        let reader = new FileReader();
-                        reader.onload = function(e) {
-                            $('#showImage')
-                                .attr('src', e.target.result)
-                                .show();
-                        };
-                        reader.readAsDataURL(this.files[0]);
-                    }
-                });
-            });
-        </script>
-
-        </script>
+        {!! JsValidator::formRequest('App\Http\Requests\ChangePasswordRequest', '#submit-form') !!}
     @endpush
 @endsection
+
+{{-- 
+@push('scripts')
+    {!! JsValidator::formRequest('App\Http\Requests\ChangePasswordRequest', '#submit-form') !!}
+@endpush --}}
